@@ -5,13 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Random user generator - VUE.js</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="main.js" defer></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.cjs.js"
-      integrity="sha512-Om0T2d9tl4H2ShSsEkWjJeQOlXGJg4OZvXKZw075refp2RNZ1avQDbqd6WhwGbWhqpcn2oPmExCEa/lSLzZaJw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
   </head>
   <body>
     <div id="app">
@@ -24,5 +17,7 @@
       <h3>Email: {{email}}</h3>
       <button :class="gender" @click="getUser()">Get Random User</button>
     </div>
+    <script src="https://unpkg.com/vue@3.0.5"></script>
+    <script src="main.js"></script>
   </body>
 </html>
