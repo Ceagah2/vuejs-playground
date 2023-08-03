@@ -1,26 +1,68 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <main class="container">
+    <PokeHeader />
+    <PokemonContainer :pokemons="pokemons" />
+  </main>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import PokeHeader from './components/Header.vue';
+import PokemonContainer from './components/PokemonContainer.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    PokeHeader,
+    PokemonContainer,
+  },
+  data() {
+    return {
+      pokemons: [],
+    };
+  },
+  methods: {
+    async getPokemons() {
+      try {
+        const response = await fetch('https://pokeapi.co/api/v2/pokemon');
+        const data = await response.json();
+        console.log(data.results);
+        this.pokemons = data.results;
+      } catch (error) {
+        console.error('Error fetching pokemons:', error);
+      }
+    },
+  },
+  mounted() {
+    this.getPokemons();
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.pokemon-container {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
 }
 </style>
